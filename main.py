@@ -192,14 +192,19 @@ if on:
 st.write(st.session_state.df_dados)
 
 if st.session_state.df_dados.shape[0] > 0:
+    #data e hora do registro
     agora = datetime.now()
     data = agora.strftime('%d_%b_%Y')
     hora = agora.strftime('%Hh%Mm%Sseg')
-    nome_arquivo = f'estruturas_{data}_{hora}.parquet'
-    
+    # Cria uma lista de medicamentos únicos
+    medicamentos_unicos = st.session_state.df_dados['medicamento'].unique().tolist()
+    # Substitui espaços por underscores em cada item e junta com underscores
+    medicamentos_registrados = '_'.join(item.replace(' ', '_') for item in medicamentos_unicos)
+    # Nome do arquivo com data, hora e medicamentos
+    nome_arquivo = f'{medicamentos_registrados}_{data}_{hora}.parquet'
     # Converter DataFrame para bytes
     parquet_bytes = st.session_state.df_dados.to_parquet(index=False)
-    
+    # Botão de download
     gravar_parquet = st.download_button(
         label="Salvar Arquivo e Fazer Download",
         data=parquet_bytes,
