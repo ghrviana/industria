@@ -147,7 +147,13 @@ medicamentos = [
     "nitazoxanida",
     "cloridrato de tramadol",
     "omeprazol",
-    "valsartana"
+    "valsartana",
+    "apixabana",
+    "bromazepam",
+    "cloridrato de metilfenidato",
+    "risperidona",
+    "prednisolona",
+    "dipropionato de beclometasona"
 ]
 
 col1, col2, col3 = st.columns(3)
